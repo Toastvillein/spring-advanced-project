@@ -13,6 +13,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
+    private final MyInterceptorHandler myInterceptorHandler;
+
     // ArgumentResolver 등록
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
@@ -21,7 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(new MyInterceptorHandler())
+        registry.addInterceptor(myInterceptorHandler)
                 .addPathPatterns("/admin/comments/**","/admin/users/**");
     }
 
