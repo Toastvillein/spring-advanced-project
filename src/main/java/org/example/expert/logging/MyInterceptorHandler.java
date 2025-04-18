@@ -2,10 +2,12 @@ package org.example.expert.logging;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+@Slf4j
 @Component
 public class MyInterceptorHandler implements HandlerInterceptor {
 
@@ -15,9 +17,7 @@ public class MyInterceptorHandler implements HandlerInterceptor {
 
         request.setAttribute("startTime",System.currentTimeMillis());
 
-        System.out.println("request: " + request.getMethod()
-                + " " + request.getRequestURI()
-                + " | URL: " + request.getRequestURL());
+        log.info("[REQUEST] {} {} | URL: {}", request.getMethod(), request.getRequestURI(), request.getRequestURL());
 
         return true;
     }
@@ -30,10 +30,8 @@ public class MyInterceptorHandler implements HandlerInterceptor {
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
 
-        System.out.println("reponse: " + request.getMethod()
-                    + " " + request.getRequestURI()
-                    + " | Status: " + response.getStatus()
-                    + " | Time: " + duration + "ms");
+        log.info("[RESPONSE] {} {} | Status: {} | Time: {}ms",
+                request.getMethod(), request.getRequestURI(), response.getStatus(), duration);
 
     }
 }
