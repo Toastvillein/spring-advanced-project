@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
-    // Fetch Join 중에 페이징은 메모리를 사용하기 때문에 Entity Graph로 변경
+    // Fetch Join 중에 페이징은 메모리를 사용하기 때문에 EntityGraph로 변경
 //    @Query("SELECT t FROM Todo t LEFT JOIN FETCH t.user u ORDER BY t.modifiedAt DESC")
 
     @EntityGraph(attributePaths = {"user"})
