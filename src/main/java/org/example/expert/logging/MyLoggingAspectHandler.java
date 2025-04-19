@@ -60,7 +60,7 @@ public class MyLoggingAspectHandler {
         // 메서드의 각 파라미터별 어노테이션 정보를 2차원 배열로 가져옴
         Annotation[][] parameterAnnotations = signature.getMethod().getParameterAnnotations();
 
-        // 각 파라미터를 돌면서 @RestController가 붙었는지 검증
+        // 각 파라미터를 돌면서 @RequestBody가 붙었는지 검증
         // 그 파라미터의 실제 값 arg[i]를 리턴
         for (int i = 0; i < parameterAnnotations.length; i++){
             for(Annotation annotation : parameterAnnotations[i]){
